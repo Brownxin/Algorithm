@@ -18,17 +18,11 @@ class Solution:
         if root == None:
             return True
 
-        def isValid(next):
-            if next == None:
+        def isValid(next,min,max):
+            if next==None:
                 return True
-            if not next.left == None:
-                if next.left.val >= next.val:
-                    return False
-            if not next.right == None:
-                if next.right.val <= next.val:
-                    return False
-            flag = isValid(next.left)
-            flag = flag and isValid(next.right)
-            return flag
-        res = isValid(root)
-        return res
+            if next.val<=min or next.val>=max:
+                return False
+            return isValid(next.left,min,next.val) and isValid(next.right,next.val,max)
+
+        return isValid(root,-10**10,10**10)
