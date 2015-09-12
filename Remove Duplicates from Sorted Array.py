@@ -5,13 +5,10 @@ class Solution:
     """
     def removeDuplicates(self, A):
         # write your code here
-        self.A=A
-        if A==[] or A==None:
-            return A
-        list=[i for i in set(A)]
-        list.sort()
-        return list
+        j=0
+        for i in range(len(A)):
+            if A[i]!=A[j]:
+                A[i],A[j+1]=A[j+1],A[i]
+                j+=1
 
-A = [1,1,2,2,7,7,8,9,9,10,12,12,14]
-so=Solution().removeDuplicates(A)
-print(so)
+        return j+1
